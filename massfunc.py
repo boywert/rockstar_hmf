@@ -25,7 +25,7 @@ def do_snap(i,z,flist):
     fig = plot.figure()
     ax = fig.add_subplot(111)
     for i in range(Nbins):
-        print hist_x[i],numpy.log10(hist_y[i]),numpy.log10(mf_theory_watson.dndlog10m[i]),numpy.log10(mf_theory_behroozi.dndlog10m[i])
+        print hist_x[i],numpy.log10(mf_theory_watson.M),numpy.log10(hist_y[i]),numpy.log10(mf_theory_watson.dndlog10m[i]),numpy.log10(mf_theory_behroozi.dndlog10m[i])
         
     ax.plot(hist_x,hist_y,label="Rockstar")
     ax.plot(numpy.log10(mf_theory_watson.M),mf_theory_watson.dndlog10m,label="Watson et al. (2012)")
