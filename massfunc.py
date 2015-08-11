@@ -31,6 +31,7 @@ def do_snap(i,z,flist):
     #ax.plot(numpy.log10(mf_theory_watson.M),mf_theory_watson.dndlog10m,label#="Watson et al. (2012)")
     #ax.plot(numpy.log10(mf_theory_behroozi.M),mf_theory_behroozi.dndlog10m,label="Behroozi et al. (2012)")
     #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    print str(z[i])
     fig.savefig("hmf_"+str(z[i])+".pdf")
     
 def main(argv):
