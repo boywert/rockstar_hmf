@@ -1,5 +1,5 @@
-cat_folder = "./" # folder contains halo catalogue
-zlist_file = "" # file contain snapshot redshifts
+cat_folder = "/scratch/01937/cs390/test_4_1440_112/" # folder contains halo catalogue
+zlist_file = "/scratch/01937/cs390/test_4_1440_112/workdir/snaps.list" # file contain snapshot redshifts
 M_min = 8.0
-M_Max = 12.0
+M_max = 12.0
 Nbins = 50

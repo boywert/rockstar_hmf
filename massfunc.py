@@ -10,7 +10,7 @@ def do_snap(i,z,flist):
     
     mf_theory_behroozi = hmf.MassFunction(z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Behroozi')
     mf_theory_watson = hmf.MassFunction(z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Watson')
-    logm = read_log10mass(flist[i])
+    logm = rockstar.read_log10mass(flist[i])
     hist = numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))
     hist_y = []
     hist_x = []
