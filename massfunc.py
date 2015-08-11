@@ -4,6 +4,7 @@ import sys
 import hmf
 import numpy
 import matplotlib
+matplotlib.use('Agg')
 import pylab as plot
 from global_values import *
 
@@ -20,12 +21,12 @@ def do_snap(i,z,flist):
         hist_x.append(0.5*(hist[1][i]+hist[1][i]))
         hist_y.append(hist[0][i])
     hist_y = (numpy.array(hist_y,dtype=numpy.float64))/112.**3/delta
-    print hist_y
     plot.rc('text', usetex=True)
     fig = plot.figure()
     ax = fig.add_subplot(111)
     for i in range(Nbins):
         print hist_x[i],numpy.log10(hist_y[i]),numpy.log10(mf_theory_watson.dndlog10m[i]),numpy.log10(mf_theory_behroozi.dndlog10m[i])
+        
     ax.plot(hist_x,hist_y,label="Rockstar")
     ax.plot(numpy.log10(mf_theory_watson.M),mf_theory_watson.dndlog10m,label="Watson et al. (2012)")
     ax.plot(numpy.log10(mf_theory_behroozi.M),mf_theory_behroozi.dndlog10m,label="Behroozi et al. (2012)")
