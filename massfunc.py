@@ -13,8 +13,8 @@ def do_snap(ii,z,flist):
     logm = rockstar.read_log10mass(flist[ii])
     hist = numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))
     delta = (M_max-M_min)/Nbins
-    mf_theory_behroozi = hmf.MassFunction(dlog10m = delta,z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Behroozi')
-    mf_theory_watson = hmf.MassFunction(dlog10m = delta,z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Watson')
+    mf_theory_behroozi = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Behroozi')
+    mf_theory_watson = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Watson')
     hist_y = []
     hist_x = []
     for i in range(Nbins):
