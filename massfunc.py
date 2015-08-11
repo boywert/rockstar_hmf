@@ -13,7 +13,7 @@ rank = MPI.COMM_WORLD.Get_rank()
 size = MPI.COMM_WORLD.Get_size()
 
 def do_snap(ii,z,flist):
-    print "Doing snapshot",ii,"z =",z[ii],flist[ii]
+    # print "Doing snapshot",ii,"z =",z[ii],flist[ii] 
     logm = rockstar.read_log10mass(flist[ii])
     hist = numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))
     delta = (M_max-M_min)/Nbins
@@ -28,14 +28,16 @@ def do_snap(ii,z,flist):
     plot.rc('text', usetex=True)
     fig = plot.figure()
     ax = fig.add_subplot(111)
-    for i in range(Nbins):
-        print hist_x[i],numpy.log10(mf_theory_watson.M[i]),numpy.log10(hist_y[i]),numpy.log10(mf_theory_watson.dndlog10m[i]),numpy.log10(mf_theory_behroozi.dndlog10m[i])
+    # for i in range(Nbins):
+    #     print hist_x[i],numpy.log10(mf_theory_watson.M[i]),numpy.log10(hist_y[i]),numpy.log10(mf_theory_watson.dndlog10m[i]),numpy.log10(mf_theory_behroozi.dndlog10m[i])
         
     ax.plot(hist_x,hist_y,label="Rockstar")
     ax.plot(numpy.log10(mf_theory_watson.M),mf_theory_watson.dndlog10m,label="Watson et al. (2012)")
     ax.plot(numpy.log10(mf_theory_behroozi.M),mf_theory_behroozi.dndlog10m,label="Behroozi et al. (2012)")
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     ax.set_yscale("log")
+    ax.set_ylabel(r"$\mathrm{\phi(h^3 Mpc^{-3})}$")
+    ax.set_xlabel(r"$\mathrm{\log_{10}(M_{200c}/M_\odot)}$")
     fig.savefig("hmf_"+str(z[ii])+".pdf")
     
 def main(argv):
