@@ -14,9 +14,7 @@ def do_snap(i,z,flist):
     hist = numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))
     delta = (M_max-M_min)/Nbins
     mf_theory_behroozi = hmf.MassFunction(dlog10m = delta,z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Behroozi')
-    print mf_theory_behroozi.dndlog10m
     mf_theory_watson = hmf.MassFunction(dlog10m = delta,z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Watson')
-    print mf_theory_watson.dndlog10m
     hist_y = []
     hist_x = []
     for i in range(Nbins):
@@ -27,6 +25,8 @@ def do_snap(i,z,flist):
     plot.rc('text', usetex=True)
     fig = plot.figure()
     ax = fig.add_subplot(111)
+    for i in range(Nbins):
+    print hist_x[i],hist_y[i],numpy.log10(mf_theory_watson.M[i]),numpy.log10(mf_theory_behroozi.M[i])
     ax.plot(hist_x,hist_y,label="Rockstar")
     ax.plot(numpy.log10(mf_theory_watson.M),mf_theory_watson.dndlog10m,label="Watson et al. (2012)")
     ax.plot(numpy.log10(mf_theory_behroozi.M),mf_theory_behroozi.dndlog10m,label="Behroozi et al. (2012)")
