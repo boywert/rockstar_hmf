@@ -3,7 +3,7 @@ import cubepm
 import sys
 import hmf
 import numpy
-import matplotlib as plot
+import pylab as plot
 from global_values import *
 
 def do_snap(i,z,flist):
