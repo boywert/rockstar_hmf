@@ -8,9 +8,9 @@ matplotlib.use('Agg')
 import pylab as plot
 from global_values import *
 
-def do_snap(i,z,flist):
-    print "Doing snapshot",i,"z =",z[i],flist[i]
-    logm = rockstar.read_log10mass(flist[i])
+def do_snap(ii,z,flist):
+    print "Doing snapshot",i,"z =",z[ii],flist[ii]
+    logm = rockstar.read_log10mass(flist[ii])
     hist = numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))
     delta = (M_max-M_min)/Nbins
     mf_theory_behroozi = hmf.MassFunction(dlog10m = delta,z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Behroozi')
@@ -31,8 +31,8 @@ def do_snap(i,z,flist):
     #ax.plot(numpy.log10(mf_theory_watson.M),mf_theory_watson.dndlog10m,label#="Watson et al. (2012)")
     #ax.plot(numpy.log10(mf_theory_behroozi.M),mf_theory_behroozi.dndlog10m,label="Behroozi et al. (2012)")
     #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    print str(z[i])
-    fig.savefig("hmf_"+str(z[i])+".pdf")
+    print str(z[ii])
+    fig.savefig("hmf_"+str(z[ii])+".pdf")
     
 def main(argv):
     z = cubepm.read_zlist()
