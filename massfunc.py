@@ -32,9 +32,8 @@ def do_snap(i,z,flist):
 def main(argv):
     z = cubepm.read_zlist()
     flist = cubepm.rockstar_filelist()
-    for i in range(len(z)):
-        do_snap(i,z,flist)
-    return 0
+    do_snap(argv[1],z,flist)
+        
 
 if __name__ == "__main__":
     main(sys.argv)
