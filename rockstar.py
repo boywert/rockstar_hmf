@@ -2,7 +2,9 @@ import numpy
 
 def read_log10mass(file):
     mass = []
+    f = open(file,"r")
     index = f.readline().split().index("M200c_all")
+    f.close()
     print "Looking at column",index
     with open(file,"r") as f:
         for line in f:
