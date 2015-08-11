@@ -18,6 +18,8 @@ def do_snap(ii,z,flist):
     logm = rockstar.read_log10mass(flist[ii])
     hist = numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))
     delta = (M_max-M_min)/Nbins
+    mf_theory_ps = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='PS')
+    mf_theory_smt = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='SMT')
     mf_theory_behroozi = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Behroozi')
     mf_theory_watson = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Watson')
     hist_y = []
@@ -29,16 +31,15 @@ def do_snap(ii,z,flist):
     plot.rc('text', usetex=True)
     fig = plot.figure()
     ax = fig.add_subplot(111)
-    # for i in range(Nbins):
-    #     print hist_x[i],numpy.log10(mf_theory_watson.M[i]),numpy.log10(hist_y[i]),numpy.log10(mf_theory_watson.dndlog10m[i]),numpy.log10(mf_theory_behroozi.dndlog10m[i])
-        
     ax.plot(hist_x,hist_y,label="Rockstar")
+    ax.plot(numpy.log10(mf_theory_ps.M),mf_theory_ps.dndlog10m,label="PS")
+    ax.plot(numpy.log10(mf_theory_smt.M),mf_theory_smt.dndlog10m,label="SMT")
     ax.plot(numpy.log10(mf_theory_watson.M),mf_theory_watson.dndlog10m,label="Watson et al. (2012)")
     ax.plot(numpy.log10(mf_theory_behroozi.M),mf_theory_behroozi.dndlog10m,label="Behroozi et al. (2012)")
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     ax.set_yscale("log")
-    ax.set_ylabel(r"$\mathrm{\phi(h^3 Mpc^{-3})}$")
-    ax.set_xlabel(r"$\mathrm{\log_{10}(M_{200c}/M_\odot)}$")
+    ax.set_ylabel(r"$\mathrm{dn/dlog_{10} M (h^3 Mpc^{-3})}$")
+    ax.set_xlabel(r"$\mathrm{\log_{10}(h^{-1}M_{200c}/M_\odot)}$")
     fig.savefig("hmf_"+str(z[ii])+".pdf")
 
 def make_runlist(njobs):
