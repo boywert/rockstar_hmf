@@ -27,8 +27,8 @@ def do_snap(i,z,flist):
     fig.savefig("hmf_"+str(z)+".pdf")
     
 def main(argv):
-    z = read_zlist()
-    flist = rockstar_filelist()
+    z = cubepm.read_zlist()
+    flist = cubepm.rockstar_filelist()
     for i in range(len(z)):
         do_snap(i,z,flist)
     return 0
