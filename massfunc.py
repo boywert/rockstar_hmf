@@ -7,8 +7,9 @@ import matplotlib as plot
 from global_values import *
 
 def do_snap(i,z,flist):
-    mf_theory_behroozi = hmf.MassFunction(z=z,Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Behroozi')
-    mf_theory_watson = hmf.MassFunction(z=z,Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Watson')
+    
+    mf_theory_behroozi = hmf.MassFunction(z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Behroozi')
+    mf_theory_watson = hmf.MassFunction(z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Watson')
     logm = read_log10mass(flist[i])
     hist = numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))
     hist_y = []
@@ -24,7 +25,7 @@ def do_snap(i,z,flist):
     ax.plot(numpy.log10(mf_theory_behroozi.M),mf_theory_behroozi.dndlog10m,label="Behroozi et al. (2012)")
     ax.set_yscale("log")
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    fig.savefig("hmf_"+str(z)+".pdf")
+    fig.savefig("hmf_"+str(z[i])+".pdf")
     
 def main(argv):
     z = cubepm.read_zlist()
