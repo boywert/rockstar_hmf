@@ -7,7 +7,7 @@ import pylab as plot
 from global_values import *
 
 def do_snap(i,z,flist):
-    
+    print "Doing snapshot",i,"z =",z[i]
     mf_theory_behroozi = hmf.MassFunction(z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Behroozi')
     mf_theory_watson = hmf.MassFunction(z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Watson')
     logm = rockstar.read_log10mass(flist[i])
