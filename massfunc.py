@@ -19,6 +19,7 @@ def do_snap(i,z,flist):
     for i in range(Nbins):
         hist_x.append(0.5*(hist[1][i]+hist[1][i]))
         hist_y.append(hist[0][i])
+    print hist_x,hist_y
     plot.rc('text', usetex=True)
     fig = plot.figure()
     ax = fig.add_subplot(111)
