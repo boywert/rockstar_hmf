@@ -4,7 +4,6 @@ import sys
 import hmf
 import numpy
 import matplotlib
-matplotlib.use('Agg') 
 import pylab as plot
 from global_values import *
 
