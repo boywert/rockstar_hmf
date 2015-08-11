@@ -32,7 +32,7 @@ def do_snap(i,z,flist):
 def main(argv):
     z = cubepm.read_zlist()
     flist = cubepm.rockstar_filelist()
-    do_snap(argv[1],z,flist)
+    do_snap(int(argv[1]),z,flist)
         
 
 if __name__ == "__main__":
