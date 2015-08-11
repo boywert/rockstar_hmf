@@ -8,6 +8,10 @@ matplotlib.use('Agg')
 import pylab as plot
 from global_values import *
 
+from mpi4py import MPI
+rank = MPI.COMM_WORLD.Get_rank()
+size = MPI.COMM_WORLD.Get_size()
+
 def do_snap(ii,z,flist):
     print "Doing snapshot",ii,"z =",z[ii],flist[ii]
     logm = rockstar.read_log10mass(flist[ii])
@@ -37,7 +41,9 @@ def do_snap(ii,z,flist):
 def main(argv):
     z = cubepm.read_zlist()
     flist = cubepm.rockstar_filelist()
-    do_snap(int(argv[1]),z,flist)
+    for i in range(len(z)):
+        if i % size == rank:
+            do_snap(i,z,flist)
         
 
 if __name__ == "__main__":
