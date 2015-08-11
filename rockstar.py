@@ -8,6 +8,7 @@ def read_log10mass(file):
     print "Looking at column",index
     with open(file,"r") as f:
         for line in f:
+            print line
             if line[0] != "#":
                 mass.append(float(line.split()[index]))
     mass = numpy.array(mass)
