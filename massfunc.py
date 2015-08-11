@@ -28,9 +28,10 @@ def do_snap(ii,z,flist):
         print hist_x[i],numpy.log10(mf_theory_watson.M[i]),numpy.log10(hist_y[i]),numpy.log10(mf_theory_watson.dndlog10m[i]),numpy.log10(mf_theory_behroozi.dndlog10m[i])
         
     ax.plot(hist_x,hist_y,label="Rockstar")
-    #ax.plot(numpy.log10(mf_theory_watson.M),mf_theory_watson.dndlog10m,label#="Watson et al. (2012)")
-    #ax.plot(numpy.log10(mf_theory_behroozi.M),mf_theory_behroozi.dndlog10m,label="Behroozi et al. (2012)")
-    #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    ax.plot(numpy.log10(mf_theory_watson.M),mf_theory_watson.dndlog10m,label#="Watson et al. (2012)")
+    ax.plot(numpy.log10(mf_theory_behroozi.M),mf_theory_behroozi.dndlog10m,label="Behroozi et al. (2012)")
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    ax.set_yscale("log")
     fig.savefig("hmf_"+str(z[ii])+".pdf")
     
 def main(argv):
