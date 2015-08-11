@@ -17,7 +17,7 @@ def do_snap(i,z,flist):
     for i in range(Nbins):
         hist_x.append(0.5*(hist[1][i]+hist[1][i]))
         hist_y.append(hist[0][i])
-    matplotlib.rc('text', usetex=True)
+    plot.rc('text', usetex=True)
     fig = plot.figure()
     ax = fig.add_subplot(111)
     ax.plot(hist_x,hist_y,label="Rockstar")
