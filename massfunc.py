@@ -14,12 +14,13 @@ def do_snap(i,z,flist):
     mf_theory_watson = hmf.MassFunction(z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Watson')
     logm = rockstar.read_log10mass(flist[i])
     hist = numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))
+    delta = (M_max-M_min)/Nbins
     hist_y = []
     hist_x = []
     for i in range(Nbins):
         hist_x.append(0.5*(hist[1][i]+hist[1][i]))
         hist_y.append(hist[0][i])
-    print hist_x,hist_y
+    hist_y = float(hist_y)/112.**3/delta
     plot.rc('text', usetex=True)
     fig = plot.figure()
     ax = fig.add_subplot(111)
