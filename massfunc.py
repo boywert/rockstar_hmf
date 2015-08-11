@@ -38,8 +38,9 @@ def do_snap(ii,z,flist):
     ax.plot(numpy.log10(mf_theory_behroozi.M),mf_theory_behroozi.dndlog10m,label="Behroozi et al. (2012)")
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     ax.set_yscale("log")
+    ax.text(8.5, 1.e-5, r'$z = '+str(z[ii])+'$')
     ax.set_ylabel(r"$\mathrm{dn/dlog_{10} M (h^3 Mpc^{-3})}$")
-    ax.set_xlabel(r"$\mathrm{\log_{10}(h^{-1}M_{200c}/M_\odot)}$")
+    ax.set_xlabel(r"$\mathrm{\log_{10}(h M_{200c}/M_\odot)}$")
     fig.savefig("hmf_"+str(z[ii])+".pdf")
 
 def make_runlist(njobs):
