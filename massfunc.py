@@ -11,7 +11,7 @@ from global_values import *
 def do_snap(i,z,flist):
     print "Doing snapshot",i,"z =",z[i],flist[i]
     mf_theory_behroozi = hmf.MassFunction(z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Behroozi')
-    print mf_theory_behroozi.dndlog10m
+    print mf_theory_behroozi.dndlog10m/112.**3
     mf_theory_watson = hmf.MassFunction(z=z[i],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Watson')
     logm = rockstar.read_log10mass(flist[i])
     hist = numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))
