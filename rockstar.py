@@ -6,6 +6,7 @@ def read_log10mass(file):
     index = f.readline().split().index("M200c_all")
     print "Looking at column",index
     f.seek(0)
+    print "before"
     for line in f:
         if line[0] != "#":
             print line
