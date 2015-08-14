@@ -23,7 +23,7 @@ def do_snap(ii,z,flist):
     mf_theory_behroozi = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Behroozi')
     mf_theory_watson = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Watson')
     hist_y = hist[0]
-    hist_x = hist[1]
+    hist_x = hist[1][0:len(hist_y)-1]
     # for i in range(Nbins):
     #     hist_x.append(0.5*(hist[1][i]+hist[1][i]))
     #     hist_y.append(hist[0][i])
