@@ -27,7 +27,7 @@ def do_snap(ii,z,flist):
     # for i in range(Nbins):
     #     hist_x.append(0.5*(hist[1][i]+hist[1][i]))
     #     hist_y.append(hist[0][i])
-    hist_y = (numpy.array(hist_y,dtype=numpy.float64))/112.**3/delta
+    hist_y = (numpy.array(hist_y,dtype=numpy.float64))/boxsize**3/delta
     plot.rc('text', usetex=True)
     fig = plot.figure()
     ax = fig.add_subplot(111)
