@@ -59,7 +59,7 @@ def main(argv):
     flist = cubepm.rockstar_filelist()
     # jlist = make_runlist(len(z))
     # for i in jlist:
-    i = argv[1]
+    i = int(argv[1])
     do_snap(i,z,flist)
         
 
