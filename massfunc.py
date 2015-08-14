@@ -18,10 +18,10 @@ def do_snap(ii,z,flist):
     logm = rockstar.read_log10mass(flist[ii])
     hist = numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))
     delta = (M_max-M_min)/Nbins
-    mf_theory_ps = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='PS')
-    mf_theory_smt = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='SMT')
-    mf_theory_behroozi = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Behroozi')
-    mf_theory_watson = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Watson')
+    mf_theory_ps = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='PS',omegam=Om)
+    mf_theory_smt = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='SMT',omegam=Om)
+    mf_theory_behroozi = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Behroozi',omegam=Om)
+    mf_theory_watson = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='Watson',omegam=Om)
     hist_y = []
     hist_x = []
     for i in range(Nbins):
@@ -40,7 +40,7 @@ def do_snap(ii,z,flist):
     ax.set_yscale("log")
     ax.text(8.5, 1.e-5, r'$z = '+str(z[ii])+'$')
     ax.set_ylabel(r"$\mathrm{dn/dlog_{10} M (h^3 Mpc^{-3})}$")
-    ax.set_xlabel(r"$\mathrm{\log_{10}(M_{200c}/M_\odot)}$")
+    ax.set_xlabel(r"$\mathrm{\log_{10}( h M_{200c}/M_\odot)}$")
     fig.savefig("hmf_"+str(z[ii])+".pdf")
 
 def make_runlist(njobs):
