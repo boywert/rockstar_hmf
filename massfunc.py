@@ -8,8 +8,8 @@ import matplotlib
 matplotlib.use('Agg')
 import pylab as plot
 from global_values import *
-
 from mpi4py import MPI
+
 rank = MPI.COMM_WORLD.Get_rank()
 size = MPI.COMM_WORLD.Get_size()
 
@@ -32,15 +32,15 @@ def do_snap(ii,z,flist):
     fig = plot.figure()
     ax = fig.add_subplot(111)
     ax.plot(hist_x,hist_y,label="Rockstar")
-    ax.plot(numpy.log10(mf_theory_ps.M),mf_theory_ps.dndlog10m,label="PS")
-    ax.plot(numpy.log10(mf_theory_smt.M),mf_theory_smt.dndlog10m,label="SMT")
-    ax.plot(numpy.log10(mf_theory_watson.M),mf_theory_watson.dndlog10m,label="Watson et al. (2012)")
-    ax.plot(numpy.log10(mf_theory_behroozi.M),mf_theory_behroozi.dndlog10m,label="Behroozi et al. (2012)")
+    ax.plot(mf_theory_ps.,mf_theory_ps.dndlog10m,label="PS")
+    ax.plot(mf_theory_smt.M,mf_theory_smt.dndlog10m,label="SMT")
+    ax.plot(mf_theory_watson.M,mf_theory_watson.dndlog10m,label="Watson et al. (2012)")
+    ax.plot(mf_theory_behroozi.M,mf_theory_behroozi.dndlog10m,label="Behroozi et al. (2012)")
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     ax.set_yscale("log")
     ax.text(8.5, 1.e-5, r'$z = '+str(z[ii])+'$')
     ax.set_ylabel(r"$\mathrm{dn/dlog_{10} M (h^3 Mpc^{-3})}$")
-    ax.set_xlabel(r"$\mathrm{\log_{10}(h M_{200c}/M_\odot)}$")
+    ax.set_xlabel(r"$\mathrm{\log_{10}(M_{200c}/M_\odot)}$")
     fig.savefig("hmf_"+str(z[ii])+".pdf")
 
 def make_runlist(njobs):

@@ -10,7 +10,14 @@ def read_log10mass(file):
     with open(file,"r") as f:
         for line in f:
             if line[0] != "#":
-                mass.append(float(line.split()[index])/h_hubble)
+                mass.append(float(line.split()[index])/h0)
     mass = numpy.array(mass)
     return numpy.log10(mass)
+
+
+
+
+
+
+
 
