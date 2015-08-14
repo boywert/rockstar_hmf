@@ -8,10 +8,11 @@ import matplotlib
 matplotlib.use('Agg')
 import pylab as plot
 from global_values import *
-from mpi4py import MPI
 
-rank = MPI.COMM_WORLD.Get_rank()
-size = MPI.COMM_WORLD.Get_size()
+
+# from mpi4py import MPI
+# rank = MPI.COMM_WORLD.Get_rank()
+# size = MPI.COMM_WORLD.Get_size()
 
 def do_snap(ii,z,flist):
     # print "Doing snapshot",ii,"z =",z[ii],flist[ii] 
@@ -43,22 +44,22 @@ def do_snap(ii,z,flist):
     ax.set_xlabel(r"$\mathrm{\log_{10}( h M_{200c}/M_\odot)}$")
     fig.savefig("hmf_"+str(z[ii])+".pdf")
 
-def make_runlist(njobs):
-    jlist = []
-    n = njobs/size
-    remain = njobs-n*size
-    for i in range(n):
-        jlist.append(i*size+rank)
-    if rank < remain:
-        jlist.append(n*size+rank)
-    return jlist
+# def make_runlist(njobs):
+#     jlist = []
+#     n = njobs/size
+#     remain = njobs-n*size
+#     for i in range(n):
+#         jlist.append(i*size+rank)
+#     if rank < remain:
+#         jlist.append(n*size+rank)
+#     return jlist
 
 def main(argv):
     z = cubepm.read_zlist()
     flist = cubepm.rockstar_filelist()
-    jlist = make_runlist(len(z))
-    for i in jlist:
-        do_snap(i,z,flist)
+    # jlist = make_runlist(len(z))
+    # for i in jlist:
+    do_snap(i,z,flist)
         
 
 if __name__ == "__main__":
