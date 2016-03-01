@@ -7,7 +7,7 @@ def read_zlist():
 def rockstar_filelist():
     flist = []
     z = read_zlist()
-    if hasattr(N, "__len__"):
+    if hasattr(z, "__len__"):
         print "xx"
         fname = cat_folder+"/out_0.list"
         flist.append(fname)
