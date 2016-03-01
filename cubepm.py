@@ -7,6 +7,7 @@ def read_zlist():
 def rockstar_filelist():
     flist = []
     z = read_zlist()
+    print z
     if numpy.isscalar(z):
         print "xx"
         fname = cat_folder+"/out_0.list"
