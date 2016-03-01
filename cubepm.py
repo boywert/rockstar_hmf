@@ -12,6 +12,7 @@ def rockstar_filelist():
         fname = cat_folder+"/out_0.list"
         flist.append(fname)
     else:
+        print "yy"
         for i in range(len(z)):
             fname = cat_folder+"/out_"+str(i)+".list"
             flist.append(fname)
