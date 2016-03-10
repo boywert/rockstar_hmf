@@ -75,6 +75,7 @@ def main(argv):
     # jlist = make_runlist(len(z))
     # for i in jlist:
     zindex = numpy.arange(len(z))
+    numpy.random.shuffle(zindex)
     zindex_node = numpy.split(zindex,size)
     for i in zindex_node[rank]:
         do_snap(i,z,flist,0)
