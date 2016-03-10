@@ -15,7 +15,7 @@ from global_values import *
 # size = MPI.COMM_WORLD.Get_size()
 
 def do_snap(ii,zstring,flist,single = 1):
-    # print "Doing snapshot",ii,"z =",z[ii],flist[ii]
+    print "Doing snapshot",ii,"z =",z[ii],flist[ii]
     z = numpy.zeros(len(zstring))
     for ii in range(len(zstring)):
         z[ii] = float(zstring[ii])
