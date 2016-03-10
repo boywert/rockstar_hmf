@@ -24,7 +24,7 @@ def do_snap(ii,zstring,flist,single = 1):
     if single:
         logm = rockstar.read_log10mass(flist[ii])
     else:
-        flist = [cat_folder+"/zhalo_"+zstring[ii]+"/halos_"+zstring[ii]+"."+str(i)+".ascii" for i in range(4*12**3) ]
+        flist = [cat_folder+"/zhalo_"+zstring[ii]+"/halos_"+zstring[ii]+"."+str(i)+".ascii" for i in range(filespersnap) ]
         for flistii in flist:
             print "Doing file: ",flistii
             logm = rockstar.read_log10mass(flistii)
@@ -65,14 +65,19 @@ def do_snap(ii,zstring,flist,single = 1):
 #         jlist.append(n*size+rank)
 #     return jlist
 
+from mpi4py import MPI
+comm = MPI.COMM_WORLD
+size = comm.Get_size()
+rank = comm.Get_rank()
 def main(argv):
     z = cubepm.read_zlist()
     flist = cubepm.rockstar_filelist()
     # jlist = make_runlist(len(z))
     # for i in jlist:
-    i = int(argv[1])
-    print i
-    do_snap(i,z,flist,0)
+    zindex = numpy.arange(len(z))
+    zindex_node = numpy.split(zindex,size)
+    for i in zindex_node[rank]:
+        do_snap(i,z,flist,0)
 
 
 if __name__ == "__main__":
