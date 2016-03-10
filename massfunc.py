@@ -24,7 +24,7 @@ def do_snap(ii,zstring,flist,single = 1):
     if single:
         logm = rockstar.read_log10mass(flist[ii])
     else:
-        flist = [cat_folder+"/zhalo_"+zstring[ii]+"/halos_"+zstring[ii]+"."+str(i)+".ascii" for i in range(12**3) ]
+        flist = [cat_folder+"/zhalo_"+zstring[ii]+"/halos_"+zstring[ii]+"."+str(i)+".ascii" for i in range(4*12**3) ]
         for flistii in flist:
             print "Doing file: ",flistii
             logm = rockstar.read_log10mass(flistii)
