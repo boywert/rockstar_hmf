@@ -16,7 +16,9 @@ from global_values import *
 
 def do_snap(ii,zstring,flist,single = 1):
     # print "Doing snapshot",ii,"z =",z[ii],flist[ii]
-    z = numpy.fromstring(zstring)
+    z = numpy.zeros(len(zstring))
+    for ii in range(len(zstring)):
+        z[ii] = numpy.fromstring(zstring)
     hist = numpy.histogram([],bins=Nbins,range=(M_min,M_max))
     if single:
         logm = rockstar.read_log10mass(flist[ii])
