@@ -4,7 +4,7 @@ def read_zlist():
     a = open(zlist_file).readlines()
     z = []
     for zi in a:
-        z.append(zp.strip())
+        z.append(zi.strip())
     return z
 
 def rockstar_filelist():
