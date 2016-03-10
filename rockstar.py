@@ -6,7 +6,6 @@ def read_log10mass(file):
     f = open(file,"r")
     index = f.readline().split().index(column_name)
     f.close()
-    print "Looking at column",index
     with open(file,"r") as f:
         for line in f:
             if line[0] != "#":
