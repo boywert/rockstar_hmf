@@ -15,10 +15,10 @@ from global_values import *
 # size = MPI.COMM_WORLD.Get_size()
 
 def do_snap(ii,zstring,flist,single = 1):
-    print "Doing snapshot",ii,"z =",z[ii],flist[ii]
     z = numpy.zeros(len(zstring))
     for ii in range(len(zstring)):
         z[ii] = float(zstring[ii])
+    print "Doing snapshot",ii,"z =",zstring[ii],flist[ii]
     hist = numpy.histogram([],bins=Nbins,range=(M_min,M_max))
     t_hist = hist[0]
     if single:
