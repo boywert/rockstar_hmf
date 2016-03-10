@@ -14,14 +14,17 @@ from global_values import *
 # rank = MPI.COMM_WORLD.Get_rank()
 # size = MPI.COMM_WORLD.Get_size()
 
-def do_snap(ii,z,flist,single = 1):
+def do_snap(ii,zstring,flist,single = 1):
     # print "Doing snapshot",ii,"z =",z[ii],flist[ii]
+    z = numpy.fromstring(zstring)
+    hist = numpy.histogram([],bins=Nbins,range=(M_min,M_max))
     if single:
         logm = rockstar.read_log10mass(flist[ii])
     else:
-        flist = [cat_folder+"/halos_"+"f6.3"%(z[ii])+"."+str(i)+".ascii" in range(len(100)) ]
-        logm = rockstar.read_log10mass(flist)
-    hist = numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))
+        flist = [cat_folder+"/zhalo_"+zstring[ii]+"/halos_"+zstring[ii]+"."+str(i)+".ascii" in range(len(100)) ]
+        for flistii in flist:
+            logm = rockstar.read_log10mass(flistii)
+            hist[0] += numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))[0]
     delta = (M_max-M_min)/Nbins
     mf_theory_ps = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='PS',omegam=Om)
     mf_theory_smt = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='SMT',omegam=Om)
@@ -64,7 +67,7 @@ def main(argv):
     # jlist = make_runlist(len(z))
     # for i in jlist:
     i = int(argv[1])
-    do_snap(i,z,flist,1)
+    do_snap(i,z,flist,0)
 
 
 if __name__ == "__main__":
