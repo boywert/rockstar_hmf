@@ -53,7 +53,7 @@ def do_snap(ii,zstring,flist,single = 1):
     ax.text(8.5, 1.e-5, r'$z = '+str(z[ii])+'$')
     ax.set_ylabel(r"$\mathrm{dn/dlog_{10} M (h^3 Mpc^{-3})}$")
     ax.set_xlabel(r"$\mathrm{\log_{10}( h M_{200c}/M_\odot)}$")
-    fig.savefig("hmf_"+str(z[ii])+".pdf")
+    fig.savefig("hmf_"+zstring[ii]+".pdf")
 
 # def make_runlist(njobs):
 #     jlist = []
