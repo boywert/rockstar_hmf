@@ -20,13 +20,15 @@ def do_snap(ii,zstring,flist,single = 1):
     for ii in range(len(zstring)):
         z[ii] = float(zstring[ii])
     hist = numpy.histogram([],bins=Nbins,range=(M_min,M_max))
+    t_hist = hist[0]
     if single:
         logm = rockstar.read_log10mass(flist[ii])
     else:
         flist = [cat_folder+"/zhalo_"+zstring[ii]+"/halos_"+zstring[ii]+"."+str(i)+".ascii" for i in range(100) ]
         for flistii in flist:
             logm = rockstar.read_log10mass(flistii)
-            hist[0,:] += numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))[0,:]
+            t_hist += numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))[0]
+    hist[0] = t_hist
     delta = (M_max-M_min)/Nbins
     mf_theory_ps = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='PS',omegam=Om)
     mf_theory_smt = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='SMT',omegam=Om)
