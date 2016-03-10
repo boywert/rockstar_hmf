@@ -21,7 +21,6 @@ def read_log10mass_all(filelist):
     f = open(filelist[0],"r")
     index = f.readline().split().index("M200c_all")
     f.close()
-    print "Looking at column",index
     for file in filelist:
         with open(file,"r") as f:
             for line in f:
