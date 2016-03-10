@@ -18,7 +18,7 @@ def do_snap(ii,zstring,flist,single = 1):
     z = numpy.zeros(len(zstring))
     for ii in range(len(zstring)):
         z[ii] = float(zstring[ii])
-    print "Doing snapshot",ii,"z =",zstring[ii],flist[ii]
+    print "Doing snapshot",ii,"z =",zstring[ii]
     hist = numpy.histogram([],bins=Nbins,range=(M_min,M_max))
     t_hist = hist[0]
     if single:
