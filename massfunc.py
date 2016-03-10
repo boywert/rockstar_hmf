@@ -28,8 +28,6 @@ def do_snap(ii,zstring,flist,single = 1):
         for flistii in flist:
             logm = rockstar.read_log10mass(flistii)
             t_hist += numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))[0]
-    for ii in range(len(t_hist)):
-        hist[0,ii] = t_hist[ii]
     delta = (M_max-M_min)/Nbins
     mf_theory_ps = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='PS',omegam=Om)
     mf_theory_smt = hmf.MassFunction(dlog10m = delta,z=z[ii],Mmin=M_min,Mmax=M_max,delta_wrt="crit",mf_fit='SMT',omegam=Om)
@@ -39,7 +37,7 @@ def do_snap(ii,zstring,flist,single = 1):
     hist_x = []
     for i in range(Nbins):
         hist_x.append(hist[1][i])
-        hist_y.append(hist[0][i])
+        hist_y.append(t_hist[i])
     hist_y = (numpy.array(hist_y,dtype=numpy.float64))/boxsize**3/delta
     plot.rc('text', usetex=True)
     fig = plot.figure()
