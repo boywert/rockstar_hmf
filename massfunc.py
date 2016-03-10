@@ -70,6 +70,7 @@ def main(argv):
     # jlist = make_runlist(len(z))
     # for i in jlist:
     i = int(argv[1])
+    print i
     do_snap(i,z,flist,0)
 
 
