@@ -78,7 +78,7 @@ def main(argv):
     #numpy.random.shuffle(zindex)
     zindex_node = numpy.array_split(zindex,size)
     #for i in zindex_node[rank]:
-    do_snap(30,z,flist,1)
+    do_snap(40,z,flist,1)
 
 
 if __name__ == "__main__":
