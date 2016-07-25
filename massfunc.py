@@ -40,6 +40,7 @@ def do_snap(ii,zstring,flist,single = 1):
         hist_x.append(hist[1][i])
         hist_y.append(t_hist[i])
     hist_y = (numpy.array(hist_y,dtype=numpy.float64))/boxsize**3/delta
+    print hist_x,hist_y
     plot.rc('text', usetex=True)
     fig = plot.figure()
     ax = fig.add_subplot(111)
