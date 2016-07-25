@@ -7,3 +7,4 @@ Om = 0.308
 Ol = 0.692
 h0 = 0.6781
 boxsize =112.
+filespersnap = 1
