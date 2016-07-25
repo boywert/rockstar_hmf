@@ -11,6 +11,7 @@ def read_log10mass(file):
             if line[0] != "#":
                 mass.append(float(line.split()[index]))
     mass = numpy.array(mass)
+    print mass
     return numpy.log10(mass)
 
 def read_log10mass_all(filelist):
