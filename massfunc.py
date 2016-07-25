@@ -23,6 +23,7 @@ def do_snap(ii,zstring,flist,single = 1):
     t_hist = hist[0]
     if single:
         logm = rockstar.read_log10mass(flist[ii])
+        t_hist = numpy.histogram(logm,bins=Nbins,range=(M_min,M_max))[0]
     else:
         flist = [cat_folder+"/zhalo_"+zstring[ii]+"/halos_"+zstring[ii]+"."+str(i)+".ascii" for i in range(filespersnap) ]
         for flistii in flist:
